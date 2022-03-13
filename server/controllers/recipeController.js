@@ -181,7 +181,7 @@ exports.homepage = async(req, res) => {
     
     recipeavg = recipe;
     
-    res.render('index', {recipeavg: JSON.stringify(recipeavg), title: 'Cooking Blog - Home', nationalities, categories, food, counter} );
+    res.render('index', {recipeavg: JSON.stringify(recipeavg), title: 'Gasztroblog - Kezdőlap', nationalities, categories, food, counter} );
   } catch (error) {
     res.satus(500).send({message: error.message || "Error Occured" });
   }
@@ -195,7 +195,7 @@ exports.exploreCategories = async(req, res) => {
     try {
       const limitNumber = 20;
       const categories = await Category.find({}).limit(limitNumber);
-      res.render('categories', { title: 'Cooking Blog - Categoreis', categories } );
+      res.render('categories', { title: 'Gasztroblog - Kategóriák fogás szerint', categories } );
     } catch (error) {
       res.satus(500).send({message: error.message || "Error Occured" });
     }
@@ -210,7 +210,7 @@ exports.exploreCategoriesById = async(req, res) => {
       let categoryId = req.params.id;
       const limitNumber = 20;
       const categoryById = await Recipe.find({ 'categoryByServing': categoryId }).limit(limitNumber);
-      res.render('categories', { title: 'Cooking Blog - Categoreis', categoryById } );
+      res.render('categories', { title: 'Gasztroblog - Kategóriák fogás szerint', categoryById } );
     } catch (error) {
       res.satus(500).send({message: error.message || "Error Occured" });
     }
@@ -224,7 +224,7 @@ exports.exploreNationalities = async(req, res) => {
   try {
     const limitNumber = 20;
     const nationalities = await Nationality.find({}).limit(limitNumber);
-    res.render('nationalities', { title: 'Cooking Blog - Nationelities', nationalities } );
+    res.render('nationalities', { title: 'Gasztroblog - Kategóriák nemzetiség szerint', nationalities } );
   } catch (error) {
     res.satus(500).send({message: error.message || "Error Occured" });
   }
@@ -239,7 +239,7 @@ exports.exploreNationalitiesById = async(req, res) => {
     let nationalityId = req.params.id;
     const limitNumber = 20;
     const nationalityById = await Recipe.find({ 'categoryByNationality': nationalityId }).limit(limitNumber);
-    res.render('nationalities', { title: 'Cooking Blog - Nationalities', nationalityById } );
+    res.render('nationalities', { title: 'Gasztroblog - Kategóriák nemzetiség szerint', nationalityById } );
   } catch (error) {
     res.satus(500).send({message: error.message || "Error Occured" });
   }
@@ -308,7 +308,7 @@ exports.exploreNationalitiesById = async(req, res) => {
           rateee = recipe.ratingAvg;
           recipeComments = recipe.comments;
 
-        res.render('recipe', {rateee: JSON.stringify(rateee), recipeComments: JSON.stringify(recipeComments) , title: 'Cooking Blog - Recipe', recipe, counter } );
+        res.render('recipe', {rateee: JSON.stringify(rateee), recipeComments: JSON.stringify(recipeComments) , title: 'Gasztroblog - ' + recipe.name, recipe, counter } );
     } catch (error) {
         res.status(500).send({message: error.message || "Error Occured"});
     }
@@ -334,7 +334,7 @@ exports.searchRecipe = async(req, res) => {
     try {
         let searchTerm = req.body.searchTerm;
         let recipe = await Recipe.find({ $text: { $search: searchTerm, $diacriticSensitive: true} });
-        res.render('search', { title: 'Cooking Blog - Search', recipe });
+        res.render('search', { title: 'Gasztroblog - Keresés', recipe });
     } catch (error) {
         res.status(500).send({message: error.message || "Error Occured"});
     }
@@ -362,7 +362,7 @@ Recipe.collection.dropIndexes();
   try {
       const limitNumber = 20;
       const recipe = await Recipe.find({}).sort({ _id: -1 }).limit(limitNumber);
-      res.render('explore-latest', { title: 'Cooking Blog - Explore Latest', recipe } );
+      res.render('explore-latest', { title: 'Gasztroblog - Legfrisebb receptek', recipe } );
   } catch (error) {
       res.status(500).send({message: error.message || "Error Occured"});
   }
@@ -379,7 +379,7 @@ Recipe.collection.dropIndexes();
       const recipe = await Recipe.find({}).sort({ ratingAvg: -1 }).limit(limitNumber);
       const recipesavg = await Recipe.find();
       recipeavg = recipesavg;
-      res.render('explore-bestavg', {recipeavg: JSON.stringify(recipeavg), title: 'Cooking Blog - Explore Best Avg', recipe } );
+      res.render('explore-bestavg', {recipeavg: JSON.stringify(recipeavg), title: 'Gasztroblog - Legjobb értékelésű receptek', recipe } );
   } catch (error) {
       res.status(500).send({message: error.message || "Error Occured"});
   }
@@ -395,7 +395,7 @@ Recipe.collection.dropIndexes();
       let count = await Recipe.find().countDocuments();
       let random = Math.floor(Math.random() * count);
       let recipe = await Recipe.findOne().skip(random).exec();
-      res.render('explore-random', { title: 'Cooking Blog - Explore Random', recipe } );
+      res.render('explore-random', { title: 'Gasztroblog - Véletlenszerű recept', recipe } );
    } catch (error) {
       res.status(500).send({message: error.message || "Error Occured"});
   }
@@ -408,7 +408,7 @@ Recipe.collection.dropIndexes();
  exports.submitRecipe = async(req, res) => {
   const infoErrorsObj = req.flash('infoErrors');
   const infoSubmitObj = req.flash('infoSubmit');
-  res.render('submit-recipe', { title: 'Cooking Blog - Submit Recipe', infoErrorsObj, infoSubmitObj  } );
+  res.render('submit-recipe', { title: 'Gasztroblog - Recept feltöltése', infoErrorsObj, infoSubmitObj  } );
   }
 
 
@@ -476,7 +476,7 @@ exports.submitRecipeOnPost = async(req, res) => {
  exports.sendRecipe = async(req, res) => {
   const infoErrorsObj = req.flash('infoErrors');
   const infoSubmitObj = req.flash('infoSubmit');
-  res.render('send-recipe', { title: 'Cooking Blog - Submit Recipe', infoErrorsObj, infoSubmitObj  } );
+  res.render('send-recipe', { title: 'Gasztroblog - Recept beküldése', infoErrorsObj, infoSubmitObj  } );
   }
 
    /**

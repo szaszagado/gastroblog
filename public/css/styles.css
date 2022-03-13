@@ -2,7 +2,7 @@
     --bs-font-sans-serif: 'Rubik', sans-serfif;
 }
 
-.container-xxl  { max-width: 1530px; }
+.container-xxl  { max-width: 1350px; }
 
 body {
     background-image: url("/img/pattern.jpg");

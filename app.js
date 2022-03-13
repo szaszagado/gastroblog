@@ -178,7 +178,7 @@ app.get('/home', (req, res) => {
 app.get('/login', isLoggedOut, (req, res) => {
 
   const response = {
-    title: "Login",
+    title: "Gasztroblog - Bejelentkezés",
     error: req.query.error
   }
 

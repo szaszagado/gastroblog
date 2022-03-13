@@ -421,15 +421,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 .rating {
     border: none;
     margin-right: 35px
@@ -492,7 +483,7 @@
 .card {
     position: relative;
     display: flex;
-	width: 250px;
+	  width: 250px;
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;

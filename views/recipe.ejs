@@ -111,20 +111,17 @@
           <div class="sharebox">   
               
             <h2>Osszd meg a receptet az ismerőseiddel</h2>
-  <h5 class="thin">Osszd meg a receptet különböző közösségi média felületein, mint például Facebookon, Twitteren, Pinteresten vagy akár Google+on </h5>
+  <h5 class="thin">Osszd meg a receptet különböző közösségi média felületein, mint például Facebookon, Twitteren vagy akár Pinteresten </h5>
   
 
   <div class="fluid">
-    <a class="btn btn-sm btn-social btn-fb" href="https://www.facebook.com/sharer/sharer.php?u=PAGE_URL" target="_blank" title="Osszd meg Facebookon">
+    <a class="btn btn-sm btn-social btn-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://gastroblog.herokuapp.com/recipe/<%= recipe._id %>" target="_blank" title="Osszd meg Facebookon">
         <h5 class="shareh5"><i class="fab fa-facebook-square"></i> Megosztás</h5>
     </a>
-      <a class="btn btn-sm btn-social btn-tw" href="https://twitter.com/intent/tweet?text=PAGE_TITLE&amp;url=PAGE_URL" target="_blank" title="Osszd meg Twitteren">
+      <a class="btn btn-sm btn-social btn-tw" href="https://twitter.com/intent/tweet?text=PAGE_TITLE&amp;url=https://gastroblog.herokuapp.com/recipe/<%= recipe._id %>" target="_blank" title="Osszd meg Twitteren">
         <h5 class="shareh5"><i class="fab fa-twitter"></i> Tweet</h5>
     </a>
-    <a class="btn btn-sm btn-social btn-gp" href="https://plus.google.com/share?url=PAGE_URL" target="_blank" title="Osszd meg Google Pluson">
-    <h5 class="shareh5"><i class="fab fa-google-plus-g" data-fa-transform="grow-2"></i></h5>
-    </a>
-    <a class="btn btn-sm btn-social btn-pin" href="http://pinterest.com/pin/create/link/?url=" target="_blank" title="Osszd meg Pinterestne">
+    <a class="btn btn-sm btn-social btn-pin" href="http://pinterest.com/pin/create/link/?url=https://gastroblog.herokuapp.com/recipe/<%= recipe._id %>" target="_blank" title="Osszd meg Pinterestne">
     <h5 class="shareh5"><i class="fab fa-pinterest" data-fa-transform="grow-4"></i></h5>
     </a>
   </div>

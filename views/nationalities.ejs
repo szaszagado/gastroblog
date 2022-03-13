@@ -1,0 +1,36 @@
+<h1 class="pb-4">Nemzetiség</h1>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Kezdőlap</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Nemzetiség</li>
+    </ol>
+</nav>
+
+<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-4">
+  <% if(typeof nationalities !== 'undefined' && nationalities.length > 0) { %>
+    <% nationalities.forEach(function(nationality, index) { %>
+      <a href="/nationalities/<%- nationality.name %>" class="col text-center category_link">
+        <div class="category_img shadow">
+          <img src="/img/<%- nationality.image %>" alt="<%- nationality.name %>" loading="lazy">
+        </div>
+        <div class="pt-1"><%- nationality.name %></div>
+      </a>
+    <% }) %>
+  <% } %>
+</div>
+
+
+<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+  <% if(typeof nationalityById !== 'undefined' && nationalityById.length > 0) { %>
+    <% nationalityById.forEach(function(recipe, index){ %>
+    <a href="/recipe/<%= recipe._id %>" class="col text-center category_link">
+      <div class="category_img category__img--large shadow">
+        <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy">
+      </div>
+      <div class="pt-1"><%= recipe.name %></div>
+    </a>
+    <% }) %>
+  <% } %>
+
+</div>

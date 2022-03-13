@@ -1,0 +1,589 @@
+<% if(recipe != null ) { %>
+  <link rel="stylesheet" href="/css/recipestyles.css">
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- <script src="/public/js/rating.js"></script> -->
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Kezdőlap</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><%- recipe.name %></li>
+    </ol>
+  </nav>
+  <div class="row">
+    
+  </div>
+
+  <div id="printing" class="row">
+
+    <div class="col-12 col-md-4">
+      <img src="/uploads/<%- recipe.image %>" class="img-fluid sticky-top" style="top: 20px;" alt="<%- recipe.name %>" loading="lazy">
+    </div>
+
+    <div class="col-12 col-md-8">
+      <div class="row">
+        <div class="col-12"><h1><%- recipe.name %></h1></div>
+        <div class="container-md">
+          <div class="row">
+            <div class="col-sm">
+              <h5><i class="bi bi-tag"></i><a href="/categories/<%=recipe.categoryByServing %>" style="text-decoration:none">&nbsp;<%- recipe.categoryByServing %></a></h5>
+              <p><h5><i class="bi bi-flag"></i><a href="/nationalities/<%=recipe.categoryByNationality %>" style="text-decoration:none">&nbsp;<%- recipe.categoryByNationality %></a></h5></p>
+            </div>
+            
+            <div class="col-sm ">
+              <h5>
+              <i class="bi bi-eye"></i><span class="amount">&nbsp;<%= counter %> megtekintés</span>
+              </h5>
+              <div class="sony">
+              <h5>
+                <div class="stars-outer">
+                  <div class="stars-inner">
+                  </div>
+                </div>
+                <span class="number-rating"></span>
+              </h5>
+              </div>
+            </div>
+            <div class="col-sm">  
+              <button onclick="printFunction('printing')"><h5 class="printbutton"><i class="bi bi-printer"></i>&nbsp;Nyomtatás</h5></button>
+            </div>
+            <div class="col-sm">
+            </div>
+            
+          </div>          
+        </div>
+
+        <div class="container-md">
+        <div class="col-12 crop" style="white-space: pre-line;">
+          <h2>Elkészítés</h2>
+          <h5 class="thin"><%- recipe.description %></h5>
+        </div>
+      </div>
+
+
+    <h2>Hozzávalók</h2>
+
+    <div>
+      <input type="hidden" name="serving" class="serving" step="any" value="2" min="1">
+      <input type="hidden" id="previousServing" value="<%= recipe.servings %>"/>
+    </div>
+
+    <div class="v-counter">
+      <h5>
+      <input type="button" class="minusBtn" value="-" />
+      <input type="text" size="25" value="<%= recipe.servings %>" class="count" min="1"/><span> főre</span>
+      <input type="button" class="plusBtn" value="+" />
+    </h5>
+    </div>
+    
+    
+
+    <!-- Serving: <input type="text" name="serving" class="serving" value="5" /> persons
+    <input type="hidden" id="previousServing" value="5"/> -->
+    <div class="container">
+      <div class="d-flex">
+                <ul class="ingredients">
+                  <h5 class="thin">
+                  <% recipe.quantity.forEach(function logingredients(quantity, index){
+                    const ingredient = recipe.ingredients[index];
+                    console.log({ quantity: quantity, ingredient: ingredient });
+                    b = [quantity].map(parseFloat)
+                    bb = parseFloat(quantity.toString())
+                    %>
+                    <li class="ingredient">
+                    <span class="amount" id="amount"><%= bb %></span>
+                    <span><%= ingredient %></span>
+                    </li>
+                  <% }) %>
+                </h5>
+                </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<section class="content-item-share" id="comments">
+  <div class="container">   
+    <div class="row">
+          <div class="sharebox">   
+              
+            <h2>Osszd meg a receptet az ismerőseiddel</h2>
+  <h5 class="thin">Osszd meg a receptet különböző közösségi média felületein, mint például Facebookon, Twitteren, Pinteresten vagy akár Google+on </h5>
+  
+
+  <div class="fluid">
+    <a class="btn btn-sm btn-social btn-fb" href="https://www.facebook.com/sharer/sharer.php?u=PAGE_URL" target="_blank" title="Osszd meg Facebookon">
+        <h5 class="shareh5"><i class="fab fa-facebook-square"></i> Megosztás</h5>
+    </a>
+      <a class="btn btn-sm btn-social btn-tw" href="https://twitter.com/intent/tweet?text=PAGE_TITLE&amp;url=PAGE_URL" target="_blank" title="Osszd meg Twitteren">
+        <h5 class="shareh5"><i class="fab fa-twitter"></i> Tweet</h5>
+    </a>
+    <a class="btn btn-sm btn-social btn-gp" href="https://plus.google.com/share?url=PAGE_URL" target="_blank" title="Osszd meg Google Pluson">
+    <h5 class="shareh5"><i class="fab fa-google-plus-g" data-fa-transform="grow-2"></i></h5>
+    </a>
+    <a class="btn btn-sm btn-social btn-pin" href="http://pinterest.com/pin/create/link/?url=" target="_blank" title="Osszd meg Pinterestne">
+    <h5 class="shareh5"><i class="fab fa-pinterest" data-fa-transform="grow-4"></i></h5>
+    </a>
+  </div>
+  
+
+          </div>
+      </div>
+  </div>
+</section>
+
+  <!-- <div class="conainer pt-5">
+    <div class="container">
+      <form action="/recipe/<%=recipe._id%>/comments" method="POST">
+        <div class="form-group">
+          <input class="form-control" name="username" placeholder="Add meg a neved" />
+        </div>
+        <div class="form-group">
+          <textarea class="form-control rounded-0" placeholder="Hozzászólás írása..." rows="4" name="comment"></textarea>
+        </div>
+        <div class="form-group pt-2">
+          <button class="btn rounded-0 btn-primary w-100">Hozzászólás</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <% recipe.comments.forEach(function (comment) { %>
+  <div class="container pt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <p>
+            <strong><%=comment.username%></strong>
+            <br>
+            <%=comment.comment%>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %> -->
+
+
+<!-- Comments Form
+<div class="card my-4">
+  <h5 class="card-header">Leave a Comment:</h5>
+  <div class="card-body">
+    <form action="/recipe/<%=recipe._id%>/comments" method="POST">
+      <div class="form-group">
+        <input class="form-control" name="username" />
+      </div>
+
+      <div class="form-group">
+        <textarea class="form-control" name="comment" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+
+ Single Comment
+ <% if (recipe.comments) { %>
+  <% recipe.comments = recipe.comments.reverse(); %>
+  <% recipe.comments.forEach(function (comment) { %>
+    <div class="media mb-4">
+      <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+      <div class="media-body">
+        <h5 class="mt-0">
+          <%=comment.username%>
+        </h5>
+          <%=comment.comment%>
+      </div>
+    </div>
+  <% }) %>
+<% } %> -->
+
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<section class="content-item" id="comments">
+    <div class="container">   
+    	<div class="row">
+            <div calss="commentbox">   
+                <form action="/recipe/<%=recipe._id%>/comments" method="POST">
+                	<h3 class="pull-left">Új Hozzászólás</h3>
+                    <fieldset>
+                        <div class="row">
+                          <div class="form-group">
+                            <!-- <label for="rating">Értékelés</label>
+                            <select class="form-select form-control" name="rating" aria-label="Rating">
+                              <option selected>Értékelés</option>
+                              <option value="5">Nagyon jó!</option>
+                              <option value="4">Jó!</option>
+                              <option value="3">Elmegy!</option>
+                              <option value="2">Nem túl jó!</option>
+                              <option value="1">Rossz!</option>
+                            </select> -->
+                            <div class="containe mt-100">
+                              <div class="row">
+                                  <div class="col-md-3">
+                                      <div class="card">
+                                          <div class="card-body text-center">
+                                              <h5>Értékelés: <span class="myratings"></span></h5>
+                                              <fieldset class="rating" >
+                                                <input type="radio" id="star5" name="rating" value="5" required/>
+                                                  <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                                <input type="radio" id="star4half" name="rating" value="4.5" />
+                                                  <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                                <input type="radio" id="star4" name="rating" value="4" />
+                                                  <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                                <input type="radio" id="star3half" name="rating" value="3.5" />
+                                                  <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                                <input type="radio" id="star3" name="rating" value="3" />
+                                                  <label class="full" for="star3" title="Meh - 3 stars"></label>
+                                                <input type="radio" id="star2half" name="rating" value="2.5" />
+                                                  <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                                <input type="radio" id="star2" name="rating" value="2" />
+                                                  <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                <input type="radio" id="star1half" name="rating" value="1.5" />
+                                                  <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                                <input type="radio" id="star1" name="rating" value="1" />
+                                                  <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                                                <input type="radio" id="starhalf" name="rating" value="0.5" />
+                                                  <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                                <input type="radio" class="reset-option" name="rating" value="reset" />
+                                              </fieldset>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+
+
+                          </div>
+                          <div class="form-group">
+                            <input class="form-control" name="username" placeholder="Add meg a neved" required=""/>
+                          </div>
+                          <div class="form-group">
+                                <textarea class="form-control" name="comment" placeholder="Hozzászólás írása..." required=""></textarea>
+                          </div>
+                        </div>  
+                        <button type="submit" class="btn btn-primary pull-left">Küldés</button>	
+                    </fieldset>
+                    
+                </form>
+                
+                <h3>Hozzászólások</h3>
+
+                
+              
+
+                <% if (recipe.comments) { %>
+                  <% recipe.comments = recipe.comments.reverse(); %>
+                  <% recipe.comments.forEach(function (comment) { %> 
+                    <% console.log(comment.rating) %>                   
+                    <div class="media">
+                        <div class="media-body">
+                            <h4 class="media-heading"><%=comment.username%></h4>
+                              <table>
+                                <tbody>
+                                   <tr class="a<%=comment._id.valueOf()%>">
+                                     <% console.log('a' + comment._id.valueOf()) %>
+                                     <td>
+                                       <div class="get_stars-outer">
+                                        <div class="get_stars-inner"></div>
+                                       </div>
+                                        <%=comment.rating%>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            <p><h5 class="thin"><%=comment.comment%></h5></p>
+                            <ul class="list-unstyled list-inline media-detail pull-left">
+                                <li><i class="fa fa-calendar"></i><%=comment.date%></li>
+                            </ul>
+                        </div>
+                    </div>
+                  <% }) %>
+                <% } %>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!--!!!!!!!!!!!!!!!!!!!!SCRIPTS!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+$("input[type='radio']").click(function(){
+var sim = $("input[type='radio']:checked").val();
+//alert(sim);
+if (sim<3) { $('.myratings').css('color','red'); $(".myratings").text(sim); }else{ $('.myratings').css('color','green'); $(".myratings").text(sim); } }); });
+</script>
+
+
+
+<script type="text/javascript">
+   
+var resultEl = document.querySelector(".resultSet"),
+  plusMinusWidgets = document.querySelectorAll(".v-counter");
+
+for (var i = 0; i < plusMinusWidgets.length; i++) {
+  plusMinusWidgets[i].querySelector(".minusBtn").addEventListener("click", clickHandler);
+  plusMinusWidgets[i].querySelector(".plusBtn").addEventListener("click", clickHandler);
+  plusMinusWidgets[i].querySelector(".count").addEventListener("change", changeHandler);
+}
+
+function clickHandler(event) {
+  var countEl = event.target.parentNode.querySelector(".count");
+  if (event.target.className.match(/\bminusBtn\b/)) {
+    countEl.value = Number(countEl.value) - 1;
+  } else if (event.target.className.match(/\bplusBtn\b/)) {
+    countEl.value = Number(countEl.value) + 1;
+    
+  }
+  triggerEvent(countEl, "change");
+};
+
+function changeHandler(event) {
+  resultEl.value = 0;
+
+  for (var i = 0; i < plusMinusWidgets.length; i++) {
+    resultEl.value = Number(resultEl.value) + Number(plusMinusWidgets[i].querySelector('.count').value);
+
+  }
+
+};
+
+function triggerEvent(el, type){
+   if ('createEvent' in document) {
+        // modern browsers, IE9+
+        var e = document.createEvent('HTMLEvents');
+        e.initEvent(type, false, true);
+        el.dispatchEvent(e);
+    } else {
+        // IE 8
+        var e = document.createEventObject();
+        e.eventType = type;
+        el.fireEvent('on'+e.eventType, e);
+    }
+}
+</script>
+
+<!-- Print button -->
+
+<script type="text/javascript">
+  function printFunction(el){
+    var restorepage = document.body.innerHTML;
+    var printcontent = document.getElementById(el).innerHTML;
+    document.body.innerHTML = printcontent;
+    window.print();
+    document.body.innerHTML = restorepage;
+  }
+</script>
+
+<!-- Serving change -->
+
+<script>
+  $(function() {
+  $('.count').on('change', function(event) {
+    var previousValue = parseFloat($("#previousServing").val());
+    var newValue = parseFloat($(event.target).val());
+    if (previousValue && newValue) {
+        $('.ingredient').each(function(index, elem) {
+            var ingredientNow = $('.amount', elem);
+            var oldIngredientAmount = ingredientNow.text();
+            var newIngredientAmount = (oldIngredientAmount * newValue / previousValue);
+            ingredientNow.text(newIngredientAmount);
+        });
+        $('#previousServing').val(newValue);
+    }
+});
+});
+</script>
+
+
+
+<script type="text/javascript">
+  recipeComments = <%- recipeComments %>;
+
+  comments = JSON.stringify(recipeComments);
+  //console.log(comments);
+  
+  parsedJson = JSON.parse(comments);
+  console.log(parsedJson);
+
+  const reformattedArray = parsedJson.map(({username, rating}) => ({username: rating}));
+
+  //console.log(reformattedArray);
+
+
+  const result = {};
+  for (var i = 0; i < parsedJson.length; i++) {
+    result[parsedJson[i]._id] = parsedJson[i].rating;
+  }
+
+  console.log(result);
+
+
+  const ratingsss = result;
+
+  console.log(ratingsss);
+
+
+
+  // total number of stars
+  const starTotal = 5;
+
+  
+
+  for(const rating in ratingsss) { 
+    const starPercentage = (ratingsss[rating] / starTotal) * 100;
+    console.log('starpercentage: ' + starPercentage);
+    const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+    console.log('starpercenteagerounded: ' + starPercentageRounded);
+    document.querySelector(`.a${rating.valueOf()} .get_stars-inner`).style.width = starPercentageRounded;
+    console.log('rating: ' + rating);
+    //console.log('ratings[rating]: ' + ratingsss[rating])
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+<!-- Star rating for average -->
+
+<script type="text/javascript">
+
+  const locationResults = Number(<%- rateee %>).toFixed(2);
+  
+  // Initial Ratings
+
+  const ratings = {
+      sony: locationResults,
+      samsung: 3.4,
+      vizio: 2.3,
+      panasonic: 3.6,
+      phillips: 4.1
+    }
+
+  
+   
+    console.log(ratings);
+
+
+    console.log(comments.rating);
+
+    // Total Stars
+    const starsTotal = 5;
+  
+    // Run getRatings when DOM loads
+    document.addEventListener('DOMContentLoaded', getRatings);
+  
+    // Form Elements
+    const productSelect = document.getElementById('product-select');
+    const ratingControl = document.getElementById('rating-control');
+  
+    // Init product
+    let product;
+  
+    // Product select change
+    productSelect.addEventListener('change', (e) => {
+      product = e.target.value;
+      // Enable rating control
+      ratingControl.disabled = false;
+      ratingControl.value = ratings[product];
+    });
+  
+    // Rating control change
+    ratingControl.addEventListener('blur', (e) => {
+      const rating = e.target.value;
+  
+      // Make sure 5 or under
+      if (rating > 5) {
+        alert('Please rate 1 - 5');
+        return;
+      }
+  
+      // Change rating
+      ratings[product] = rating;
+  
+      getRatings();
+    });
+    
+
+    // Get ratings
+    function getRatings() {
+
+          for (let rating in ratings) {
+            // Get percentage
+            const starPercentage = (ratings[rating] / starsTotal) * 100;
+            // console.log(ratings[rating]);
+            // console.log(rating);
+            // Round to nearest 10
+            const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+            console.log(starPercentageRounded);
+            // Set width of stars-inner to percentage
+            document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
+
+            // Add number rating
+            document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
+          }
+        }
+
+    // Get ratings
+    // function getRatings() {
+    //   for (let locationResults in ratings) {
+    //     // Get percentage
+    //     console.log('ratings: ', ratings[locationResults]);
+    //     const starPercentage = (ratings[locationResults] / starsTotal) * 100;
+  
+    //     // Round to nearest 10
+    //     const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+        
+    //     console.log('lololo', starPercentage);
+    //     console.log('loooollkaa', starPercentageRounded);
+
+    //     // Set width of stars-inner to percentage
+    //     document.querySelector(`.${locationResults} .stars-inner`).style.width = starPercentageRounded;
+    //     console.log('naezzmi: ', document.querySelector(`.${locationResults} .stars-inner`).style.width = starPercentageRounded);
+    //     // Add number rating
+    //     document.querySelector(`.${locationResults} .number-rating`).innerHTML = ratings[rating];
+    //     console.log('ezazee', document.querySelector(`.${locationResults} .number-rating`).innerHTML = ratings[locationResults])
+    //   }
+     
+        // Get percentage
+        // const starPercentage = (locationResults / starsTotal) * 100;
+
+        // console.log('lololo', starPercentage)
+  
+        // // Round to nearest 10
+        // const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+        
+        // console.log('loooollkaa', starPercentageRounded)
+        // // Set width of stars-inner to percentage
+        // document.querySelector(`.${locationResults} .stars-inner`).style.width = starPercentageRounded;
+        // // Add number rating
+        // document.querySelector(`.${locationResults} .number-rating`).innerHTML = locationResults;
+    
+  </script>
+  
+
+
+
+<% } else { %>
+  <p>No item found.</p>
+<% } %>

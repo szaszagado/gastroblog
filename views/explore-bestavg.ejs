@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="/css/index.css">
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+
+<h1 class="pb-4">Legjobb értékelésű receptek</h1>
+
+<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+    <% if(typeof recipe !== 'undefined' && recipe.length > 0) { %>
+      <% recipe.forEach(function(recipe, index){ %>
+      <a href="/recipe/<%= recipe._id %>" class="col text-center category_link">
+        <div class="category_img category__img--large shadow">
+          <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy">
+        </div>
+        <div class="pt-1"><%= recipe.name %></div>
+        <table class="d-flex justify-content-center">
+          <tbody>
+             <tr class="a<%=recipe._id.valueOf()%>">
+               <td>
+              <h5>
+                 <div class="get_stars-outer">
+                  <div class="get_stars-inner"></div>
+                 </div>
+              </h5>    
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </a>
+      <% }) %>
+    <% } else { %>
+      <p>Nem található recept.</p>
+    <% } %>
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+
+recipeavg = <%- recipeavg %>;
+
+recipes = JSON.stringify(recipeavg);
+  //console.log(recipes);
+
+
+  
+parsedJson = JSON.parse(recipes);
+console.log(parsedJson);
+
+
+const reformattedArray = parsedJson.map(({_id, ratingAvg}) => ({_id, ratingAvg}));
+
+console.log(reformattedArray);
+
+
+reformattedArray.sort(function(a, b){
+    return b.ratingAvg - a.ratingAvg;
+})
+
+
+
+
+
+
+const result = {};
+for (var i = 0; i < reformattedArray.length; i++) {
+    result[reformattedArray[i]._id] = reformattedArray[i].ratingAvg;
+}
+
+
+// var sortable = [];
+// for (var _id in ratingAvg) {
+//     sortable.push([_id, ratingAvg[_id]]);
+// }
+
+// sortable.sort(function(a, b) {
+//     return a[1] - b[1];
+// });
+
+
+//console.log(result);
+
+const ratingsss = result;
+
+  
+// total number of stars
+const starTotal = 5;
+
+//console.log(ratingsss);
+
+
+
+for(const rating in ratingsss) { 
+    const starPercentage = (ratingsss[rating] / starTotal) * 100;
+    console.log('starpercentage: ' + starPercentage);
+    const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+    console.log('starpercenteagerounded: ' + starPercentageRounded);
+    document.querySelector(`.a${rating.valueOf()} .get_stars-inner`).style.width = starPercentageRounded;
+    console.log('rating: ' + rating);
+    //console.log('ratings[rating]: ' + ratingsss[rating])
+  }
+  </script>

@@ -1,0 +1,198 @@
+<link rel="stylesheet" href="/css/index.css">
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+
+<div>
+    <h5>Látogatók: <%= counter %></h5>
+</div>
+
+<div class="row flex-lg-row-reverse align-items-center g-5 py-4 mb-4">
+    <div class="col-12 col-lg-6">
+        <img src="/img/main.png" width="607" height="510" class="d-block mx-lg-auto img-fluid" loading="lazy" alt="Gasztroblog by Szalma Gabor">
+    </div>
+    <div class="col-12 col-lg-6">
+        <h1 class="display-5 fw-bold mb-3">Garantáltan megtalálod a kedvenc recepted</h1>
+        <p class="lead">
+            Fedezd fel a világ különböző hagyományos ételeit, vagy ha hazai ízekre vágysz, itt garantáltan megtalálod azt. Széles választéknak köszönhetően különböző fogásokból válogathatsz, legyen szó reggeliről, ebédről, vacsoráról, vagy ha valami édességre vágysz, a desszert kínálatból is akad bőven. Ha neked is van egy bevállt recepted, amit másoknak is ki kéne próbálni, akkor nehabozz, és küldd be nekünk!
+        </p>
+
+        <div class="d-grip gap-2 d-md-flex justify-content-md-start">
+            <a href="/explore-latest" class="btn btn-primary btn-dark btn-lg px-4 me-md-2">Legfrisebb receptek</a>
+            <a href="/explore-random" class="btn btn-outline-secondary btn-dark btn-lg px-4 me-md-2">Véletlenszerű recept</a>
+        </div>
+    </div>
+
+</div>
+
+<!-- <div class="row flex-lg-row-reverse align-items-center g-5 py-4 mb-4">
+    <div class="col-12 col-lg-6">
+        <p>Latogatok: <%= counter %></p>
+    </div> -->
+
+
+<!--Categories Start-->
+
+<h2>Kategóriák fogás szerint</h2>
+<div class="row row-cols-2 row-cols-lg-6 g-2 g-lg-3 py-4">
+    <% if(categories != '') { %>
+        <% categories.forEach(function(category, index) { %>
+        <a href="/categories/<%- category.name %>" class="col text-center category_link">
+            <div class="category_img shadow">
+                <img src="img/<%- category.image %>" alt="<%- category.name %>" loading="lazy">
+            </div>
+            <div class="pt-1"><h5><%- category.name %></h5></div>
+        </a>
+        <% }) %>
+    <% } %>
+
+    <a href="/categories" class="col text-center category_link">
+        <div class="category_img shadow">
+            <img src="img/more-category.jpg" alt="View All Categories" loading="lazy">
+        </div>
+        <div class="pt-1"><h5>Összes</h5></div>
+    </a>
+</div>
+
+<!--Categories End-->
+
+<!--Nationalities Start-->
+
+<h2>Kategóriák nemzetiség szerint</h2>
+<div class="row row-cols-2 row-cols-lg-6 g-2 g-lg-3 py-4">
+    <% if(nationalities != '') { %>
+        <% nationalities.forEach(function(nationality, index) { %>
+        <a href="/nationalities/<%- nationality.name %>" class="col text-center category_link">
+            <div class="category_img shadow">
+                <img src="img/<%- nationality.image %>" alt="<%- nationality.name %>" loading="lazy">
+            </div>
+            <div class="pt-1"><h5><%- nationality.name %></h5></div>
+        </a>
+        <% }) %>
+    <% } %>
+    <a href="/nationalities" class="col text-center category_link">
+        <div class="category_img shadow">
+            <img src="img/more-category.jpg" alt="View All Categories" loading="lazy">
+        </div>
+        <div class="pt-1"><h5>Összes</h5></div>
+    </a>
+
+</div>
+
+
+<!--Nationalities End-->
+
+
+<!--Latest Start-->
+
+<section class="pb-4 pt-4">
+    <div class="d-flex mb-2 align-items-center">
+        <h2>Legfrissebb receptek</h2>
+        <a href="/explore-latest" class="ms-auto">Mutas többet..</a>
+    </div>
+
+
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+        <% if(food != '') { %>
+            <% food.latest.forEach(function(recipe, index){ %>
+
+            <a href="/recipe/<%= recipe._id %>" class="col text-center category_link">
+                <div class="category_img category_img--large shadow">
+                    <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy">
+                </div>
+                <div class="pt-1"><h5><%= recipe.name %></h5></div>
+            </a>
+            <% }) %>
+        <% } else { %>
+            <p><h5>Nem található recept.</h5></p>
+        <% } %>
+
+    </div>
+
+</section>
+
+<!--Latest End-->
+
+
+
+<!--Latest Start-->
+
+<section class="pb-4 pt-4">
+    <div class="d-flex mb-2 align-items-center">
+        <h2>Legjobb értékelésű receptek</h2>
+        <a href="/explore-bestavg" class="ms-auto">Mutas többet..</a>
+    </div>
+
+
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+        <% if(food != '') { %>
+            <% food.bestavg.forEach(function(recipe, index){ %>
+
+            <a href="/recipe/<%= recipe._id %>" class="col text-center category_link">
+                <div class="category_img category_img--large shadow">
+                    <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy">
+                </div>
+                <div class="pt-1"><h5><%= recipe.name %></h5></div>
+                <div class="d-flex justify-content-center">
+                    <table>
+                        <tbody>
+                           <tr class="a<%=recipe._id.valueOf()%>">
+                             <td>
+                            <h4>
+                               <div class="get_stars-outer">
+                                <div class="get_stars-inner"></div>
+                               </div>
+                            </h4>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </a>
+            <% }) %>
+        <% } else { %>
+            <p><h5>Nem található recept.</h5></p>
+        <% } %>
+
+    </div>
+
+</section>
+
+
+<!--Submit Start-->
+<section class="px-4 py-5 my-5 text-center">
+    <img src="/img/publish-recipe.png" class="d-block mx-auto mb-4 img-fluid" alt="" width="566" height="208" loading="lazy">
+    <h1 class="display-5 fw-bold">Küldd be a saját receptedet</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Oszd meg a kedvenc receptedet a többi olvasóval</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="/send-recipe" class="btn btn-primary btn-dark btn-lg">Beküldés</a>
+      </div>
+    </div>
+  </section>
+
+<!--Submit End-->
+
+
+<script type="text/javascript">
+
+recipeavg = <%- recipeavg %>;
+recipes = JSON.stringify(recipeavg); 
+parsedJson = JSON.parse(recipes);
+const reformattedArray = parsedJson.map(({_id, ratingAvg}) => ({_id, ratingAvg}));
+reformattedArray.sort(function(a, b){
+    return b.ratingAvg - a.ratingAvg;
+})
+const result = {};
+for (var i = 0; i < reformattedArray.length; i++) {
+    result[reformattedArray[i]._id] = reformattedArray[i].ratingAvg;
+}
+const ratingsss = result;
+
+// total number of stars
+const starTotal = 5;
+
+for(const rating in ratingsss) { 
+    const starPercentage = (ratingsss[rating] / starTotal) * 100;
+    const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+    document.querySelector(`.a${rating.valueOf()} .get_stars-inner`).style.width = starPercentageRounded;
+  }
+  </script>

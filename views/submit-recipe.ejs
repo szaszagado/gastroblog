@@ -1,0 +1,112 @@
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Recept Feltöltése</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead">Saját recept feltöltése</p>
+    </div>
+  </div>
+
+  <% if(infoSubmitObj != '') { %>
+    <div class="col-8 alert alert-success" role="alert">
+      <%= infoSubmitObj %>
+    </div>
+  <% } %>
+
+  <% if(infoErrorsObj != '') { %>
+    <div class="col-8 alert alert-danger" role="alert">
+      <%= infoErrorsObj[0].message %>
+    </div>
+  <% } %>
+  
+  <div class="row justify-content-center">
+  
+    <div class="col-8">
+  
+      <form action="/submit-recipe" enctype="multipart/form-data" method="POST">
+      
+        <div class="row g-3">
+  
+          <div class="col-12">
+            <label for="name" class="form-label">Recept Megnevezése</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+          </div>
+          
+          <div class="col-12">
+            <label for="description" class="form-label">Elkészítés</label>
+            <textarea name="description" id="description" class="form-control" cols="30" rows="4" required></textarea>
+          </div>
+          
+          <div class="col-12">
+            <label for="name" class="form-label">Adag (hány főre)</label>
+            <input type="number" name="servings" id="servings" class="form-control" required>
+          </div>
+
+          <div name="serving">
+            <div class="container row">
+              <div class="ingredientList row">
+                <div class="ingredeintDiv mb-1 row">
+                  <div class="col-md-2">
+                    <label for="quantityList">Mennyiség</label>
+                    <div class="quantityList">
+                      <div class="quantityDiv mb-1">
+                        <input type="number" step="any" name="quantity" class="form-control" required>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-10">
+                    <label for="ingredientList">Hozzávalók</label>
+                        <input type="text" name="ingredients" class="form-control" required>
+                  </div>
+                </div>
+              </div>
+              </div>
+            
+
+            <div class="col-12">
+              <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Add</button>
+            </div>
+          </div>
+  
+          <div class="col-12">
+            <label for="category">Kategória fogás szerint</label>
+            <select class="form-select form-control" name="categoryByServing" aria-label="Category" required>
+              <option selected value="">Kategória fogás szerint</option>
+              <option value="Reggeli">Reggeli</option>
+              <option value="Ebéd">Ebéd</option>
+              <option value="Vacsora">Vacsora</option>
+              <option value="Desszert">Desszert</option>
+              <option value="Levesek">Levesek</option>
+              <option value="Egyéb">Egyéb..</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label for="category">Kategória nemzetiség szerint</label>
+            <select class="form-select form-control" name="categoryByNationality" aria-label="Category" required>
+              <option selected value="">Kategória nemzetiség szerint</option>
+              <option value="Thai" required>Thai</option>
+              <option value="Kínai" required>Kínai</option>
+              <option value="Indiai" required>Indiai</option>
+              <option value="Olasz" required>Olasz</option>
+              <option value="Angol" required>Angol</option>
+              <option value="Magyar" required>Magyar</option>
+              <option value="Egyéb" required>Egyéb..</option>
+            </select>
+          </div>
+  
+          <div class="col-12">
+            <label for="image">Kép az ételről</label>
+            <input type="file" class="form-control" name="image" accept="image/*" required>
+          </div>
+  
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Recept Feltöltése</button>
+          </div>
+  
+        </div>
+      
+      </form>
+  
+    </div>
+  </div>

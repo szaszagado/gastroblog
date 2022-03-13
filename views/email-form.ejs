@@ -1,0 +1,134 @@
+<!-- <div class="contact">
+    <h3>Email Us</h3>
+    <% var msg; %>
+    <form method="POST" action="send">
+        <p>
+            <label>Name</label>
+            <input type="text" name="name">
+        </p>
+        <p>
+            <label>Company</label>
+            <input type="text" name="company">
+        </p>
+        <p>
+            <label>Email Address</label>
+            <input type="email" name="email">
+        </p>
+        <p>
+            <label>Phone Number</label>
+            <input type="text" name="phone">
+        </p>
+        <p class="full">
+            <label>Message</label>
+            <textarea name="message" rows="5"></textarea>
+        </p>
+        <p class="full">
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+</div> -->
+
+
+
+
+
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Recept beküldése</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead">Saját recept beküldése</p>
+    </div>
+</div>
+
+  
+  <div class="contact row justify-content-center">
+  
+    <div class="col-8">
+  
+      <form method="POST" action="send" enctype="multipart/form-data">
+      
+        <div class="row g-3">
+
+            <div class="col-12">
+                <label for="sendername" class="form-label">Beküldő neve</label>
+                <input type="text" name="sendername" id="sendername" class="form-control" required>
+            </div>
+
+            <div class="col-12">
+                <label for="senderemail" class="form-label">Beküldő email címe</label>
+                <input type="email" name="senderemail" id="senderemail" class="form-control" required>
+            </div>
+
+          <div class="col-12">
+            <label for="recipename" class="form-label">Recept Megnevezése</label>
+            <input type="text" name="recipename" id="recipename" class="form-control" required>
+          </div>
+          
+          <div class="col-12">
+            <label for="description" class="form-label">Elkészítés</label>
+            <textarea name="description" id="description" class="form-control" cols="30" rows="4" required></textarea>
+          </div>
+  
+          <div class="col-12">
+            <label for="name" class="form-label">Adag (hány főre)</label>
+            <input type="number" name="servings" id="servings" class="form-control" required>
+          </div>
+
+          <div class="container row">
+            <div class="ingredientList row">
+              <div class="ingredeintDiv mb-1 row">
+                <div class="col-12">
+                  <label for="ingredientList">Hozzávalók</label>
+                      <input type="text" name="ingredients" id="ingredients" class="form-control" required>
+                </div>
+              </div>
+            </div>
+            </div>
+          
+
+          <div class="col-12">
+            <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Hozzávaló</button>
+          </div>
+  
+          <div class="col-12">
+            <label for="category">Kategória fogás szerint</label>
+            <select class="form-select form-control" name="categoryByServing" aria-label="Category" required>
+              <option selected value="">Kategória fogás szerint</option>
+              <option value="Reggeli">Reggeli</option>
+              <option value="Ebéd">Ebéd</option>
+              <option value="Vacsora">Vacsora</option>
+              <option value="Desszert">Desszert</option>
+              <option value="Levesek">Levesek</option>
+              <option value="Egyéb">Egyéb..</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label for="category">Kategória nemzetiség szerint</label>
+            <select class="form-select form-control" name="categoryByNationality" aria-label="Category" required>
+              <option selected value="">Kategória nemzetiség szerint</option>
+              <option value="Thai">Thai</option>
+              <option value="Kínai">Kínai</option>
+              <option value="Indiai">Indiai</option>
+              <option value="Olasz">Olasz</option>
+              <option value="Angol">Angol</option>
+              <option value="Magyar">Magyar</option>
+              <option value="Egyéb">Egyéb..</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label for="image" class="form-label">Kép az ételről</label>
+            <input type="file" class="form-control" name="image" required>
+          </div>
+  
+          <div class="col-12">
+            <button type="submit">Recept beküldése</button>
+          </div>
+  
+        </div>
+      
+      </form>
+
+  
+    </div>
+  </div>

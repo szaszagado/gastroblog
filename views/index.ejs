@@ -1,9 +1,8 @@
 <link rel="stylesheet" href="/css/index.css">
 <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 
-<div>
-    <h5>Látogatók: <%= counter %></h5>
-</div>
+
+<h5><i class="bi bi-eye"></i><span class="amount">&nbsp;<%= counter %> látogató</span></h5>
 
 <div class="row flex-lg-row-reverse align-items-center g-5 py-4 mb-4">
     <div class="col-12 col-lg-6">
@@ -195,4 +194,4 @@ for(const rating in ratingsss) {
     const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
     document.querySelector(`.a${rating.valueOf()} .get_stars-inner`).style.width = starPercentageRounded;
   }
-  </script>
+</script>

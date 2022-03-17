@@ -1,3 +1,5 @@
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <div class="px-4 py-5 my-5 text-center">
     <h1 class="display-5 fw-bold">Recept Feltöltése</h1>
     <div class="col-lg-6 mx-auto">
@@ -40,8 +42,7 @@
             <input type="number" name="servings" id="servings" class="form-control" required>
           </div>
 
-          <div name="serving">
-            <div class="container row">
+          <div name="serving" class="container row">
               <div class="ingredientList row">
                 <div class="ingredeintDiv mb-1 row">
                   <div class="col-md-2">
@@ -54,20 +55,36 @@
                   </div>
 
 
-                  <div class="col-md-10">
+                  <div class="col-md-8">
                     <label for="ingredientList">Hozzávalók</label>
                         <input type="text" name="ingredients" class="form-control" required>
                   </div>
+
+
+                  <div class="col-md-2">
+                    <label></label>
+                    <button type="button" class="form-control btn btn-outline-primary add_field_button" id="addIngredientsBtn">Hozzáadás</button>
+                  </div>
+
+                  
                 </div>
               </div>
-              </div>
+            </div>
+              
             
-
+<!-- 
             <div class="col-12">
-              <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Add</button>
+              <button class="btn btn-outline-primary add_field_button"">+ Hozzáadás</button>
             </div>
           </div>
-  
+
+          <div class="input_fields_wrap">
+            <button class="add_field_button">Add More Fields</button>
+            <div><input type="text" name="mytext[]"></div>
+          </div> -->
+          
+          <br>
+
           <div class="col-12">
             <label for="category">Kategória fogás szerint</label>
             <select class="form-select form-control" name="categoryByServing" aria-label="Category" required>
@@ -80,6 +97,8 @@
               <option value="Egyéb">Egyéb..</option>
             </select>
           </div>
+
+          <br><br><br>
 
           <div class="col-12">
             <label for="category">Kategória nemzetiség szerint</label>
@@ -94,19 +113,61 @@
               <option value="Egyéb" required>Egyéb..</option>
             </select>
           </div>
-  
+          
+          <br><br><br>
+
           <div class="col-12">
             <label for="image">Kép az ételről</label>
             <input type="file" class="form-control" name="image" accept="image/*" required>
           </div>
-  
+          
+          <br><br><br>
+
           <div class="col-12">
             <button type="submit" class="btn btn-primary">Recept Feltöltése</button>
           </div>
   
         </div>
       
+
+
       </form>
-  
+
+
     </div>
   </div>
+
+
+
+		
+	
+	<script>
+	$(document).ready(function() {
+    var max_fields      = 10; //maximum input boxes allowed
+    var wrapper         = $(".ingredeintDiv"); //Fields wrapper
+    var add_button      = $(".add_field_button"); //Add button ID
+   
+    var x = 1; //initlal text box count
+	
+	
+   $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+	
+		     //text box increment
+            $(wrapper).append('<div class="ingredeintDiv mb-1 row"><div class="col-md-2"><label for="quantityList">Mennyiség</label><div class="quantityList"><div class="quantityDiv mb-1"><input type="number" step="any" name="quantity" class="form-control" required></div></div></div><div class="col-md-8"><label for="ingredientList">Hozzávalók</label><input type="text" name="ingredients" class="form-control" required></div><a href="#" class="remove_field">Törlés</a></div>'); //add input box
+            x++; 
+	  }
+    });
+   
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+       
+		e.preventDefault(); 
+		$(this).parent('div').remove(); 
+		x--;
+    })
+});
+	
+	</script>
+
+

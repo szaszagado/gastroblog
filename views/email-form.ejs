@@ -1,3 +1,5 @@
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <!-- <div class="contact">
     <h3>Email Us</h3>
     <% var msg; %>
@@ -75,18 +77,18 @@
 
          
               
-          <div class="col-12">
+          <div class="col-12 row ingredeintDiv">
+            <div class="col-10">
             <label for="ingredientList">Hozzávalók</label>
                 <input type="text" name="ingredients" id="ingredients" class="form-control" required>
+              </div>
+                <div class="col-2">
+                  <label></label>
+                  <button type="button" class="form-control btn btn-outline-primary add_field_button" id="addIngredientsBtn">Hozzáadás</button>
+                </div>
           </div>
-            
-            
-            
-          
 
-          <div class="col-12">
-            <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Hozzávaló</button>
-          </div>
+
   
           <div class="col-12">
             <label for="category">Kategória fogás szerint</label>
@@ -131,3 +133,32 @@
   
     </div>
   </div>
+
+  <script>
+    $(document).ready(function() {
+      var max_fields      = 10; //maximum input boxes allowed
+      var wrapper         = $(".ingredeintDiv"); //Fields wrapper
+      var add_button      = $(".add_field_button"); //Add button ID
+     
+      var x = 1; //initlal text box count
+    
+    
+     $(add_button).click(function(e){ //on add input button click
+          e.preventDefault();
+          if(x < max_fields){ //max input box allowed
+    
+           //text box increment
+              $(wrapper).append('<div class="col-12 row ingredeintDiv"><div class="col-10"><label for="ingredientList"></label><input type="text" name="ingredients" id="ingredients" class="form-control" required></div><a href="#" class="remove_field">Törlés</a></div>'); //add input box
+              x++; 
+      }
+      });
+     
+      $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+         
+      e.preventDefault(); 
+      $(this).parent('div').remove(); 
+      x--;
+      })
+  });
+    
+    </script>

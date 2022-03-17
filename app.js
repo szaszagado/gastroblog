@@ -259,20 +259,21 @@ app.post('/send', (req, res) => {
   
 
     let transporter = nodemailer.createTransport({
-      service: 'gmail',
-      secure: 'false',
-      auth: {
-        user: 'green3dsashe@gmail.com',
-        pass: 'Carpmasterfishing50'
-      },
+      host: "smtp-mail.outlook.com",
+      secureConnection: false,
+      port: 587,
       tls: {
-        rejectUnauthorized: false
+        ciphers:'SSLv3'
+      },
+      auth: {
+        user: 'gastroblogbyszg@outlook.com',
+        pass: 'Carpmasterfishing50'
       }
     });
 
   let mailOptions = {
-    from: '<green3dsashe@gmail.com>',
-    to: 'carpmasterfishing@gmail.com',
+    from: '<gastroblogbyszg@outlook.com>',
+    to: 'gastroblogbyszg@outlook.com',
     subject: 'Beküldött recept',
     text: '',
     html: "<h3>Recept beküldő adatai</h3><ul><li>Beküldő neve: " + req.body.sendername + "</li><li>Beküldő email címe: " + req.body.senderemail + "</li></ul><h3>Recept megnevezese: </h3><ul><li>" + req.body.recipename + "</li></ul><h3>Kategória fogás szerint: </h3><ul><li>" + req.body.categoryByServing + "</li></ul><h3>Kategória nemzetiség szerint: </h3><ul><li>" + req.body.categoryByNationality + "</li></ul><h3>Elkészítés: </h3><ul><li>" + req.body.description + "</li></ul><h3>Adag (főre): </h3><ul><li>" + req.body.servings + "</li></ul><h3>Hozzávalók: </h3><ul><li>" + req.body.ingredients + "</li></ul>",
@@ -286,7 +287,7 @@ app.post('/send', (req, res) => {
     if (error) {
       return console.log('Error Occurs', error);
     } else {
-      console.log('Email senttttt!');
+      console.log('Email sent!');
     }
 
     req.flash('Recipe has been added.')

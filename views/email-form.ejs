@@ -1,4 +1,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="/css/send-recipe.css">
 
 <!-- <div class="contact">
     <h3>Email Us</h3>
@@ -30,22 +31,38 @@
     </form>
 </div> -->
 
+<section class="px-2 py-2 my-2 text-center">
+  <img src="/img/publish-recipe.png" class="d-block mx-auto mb-4 img-fluid" alt="" width="566" height="208" loading="lazy">
+  <h1 class="display-5 fw-bold">Recept beküldése</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">Saját recept beküldése</p>
+  </div>
+</section>
 
-
-
-
-<div class="px-4 py-5 my-5 text-center">
+<!-- <div class="px-3 py-2 my-3 text-center">
     <h1 class="display-5 fw-bold">Recept beküldése</h1>
     <div class="col-lg-6 mx-auto">
       <p class="lead">Saját recept beküldése</p>
     </div>
-</div>
+</div> -->
 
   
   <div class="contact row justify-content-center">
   
     <div class="col-8">
-  
+      
+      <% if(infoSubmitObj != '') { %>
+        <div class="col-12 alert alert-success" role="alert">
+          <%= infoSubmitObj %>
+        </div>
+      <% } %>
+      
+      <% if(infoErrorsObj != '') { %>
+        <div class="col-12 alert alert-danger" role="alert">
+          <%= infoErrorsObj[0].message %>
+        </div>
+      <% } %>
+      
       <form method="POST" action="send" enctype="multipart/form-data">
       
         <div class="row g-3">
@@ -148,7 +165,7 @@
           if(x < max_fields){ //max input box allowed
     
            //text box increment
-              $(wrapper).append('<div class="col-12 row ingredeintDiv"><div class="col-10"><label for="ingredientList"></label><input type="text" name="ingredients" id="ingredients" class="form-control" required></div><a href="#" class="remove_field">Törlés</a></div>'); //add input box
+              $(wrapper).append('<div class="row ingredeintDiv"><div class="col-12"><label for="ingredientList"></label><input type="text" name="ingredients" id="ingredients" class="form-control" required></div><a href="#" class="linkbtn remove_field btn btn-danger">Törlés</a></div>'); //add input box
               x++; 
       }
       });

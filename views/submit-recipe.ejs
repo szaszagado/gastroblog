@@ -1,30 +1,35 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="/css/send-recipe.css">
 
-<div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">Recept Feltöltése</h1>
-    <div class="col-lg-6 mx-auto">
-      <p class="lead">Saját recept feltöltése</p>
-    </div>
+<section class="px-2 py-2 my-2 text-center">
+  <img src="/img/publish-recipe.png" class="d-block mx-auto mb-4 img-fluid" alt="" width="566" height="208" loading="lazy">
+  <h1 class="display-5 fw-bold">Recept feltöltése</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">Saját recept feltöltése</p>
   </div>
+</section>
 
-  <% if(infoSubmitObj != '') { %>
-    <div class="col-8 alert alert-success" role="alert">
-      <%= infoSubmitObj %>
-    </div>
-  <% } %>
-
-  <% if(infoErrorsObj != '') { %>
-    <div class="col-8 alert alert-danger" role="alert">
-      <%= infoErrorsObj[0].message %>
-    </div>
-  <% } %>
+ 
   
   <div class="row justify-content-center">
   
     <div class="col-8">
   
+      <% if(infoSubmitObj != '') { %>
+        <div class="col-12 alert alert-success" role="alert">
+          <%= infoSubmitObj %>
+        </div>
+      <% } %>
+    
+      <% if(infoErrorsObj != '') { %>
+        <div class="col-12 alert alert-danger" role="alert">
+          <%= infoErrorsObj[0].message %>
+        </div>
+      <% } %>
+
+
       <form action="/submit-recipe" enctype="multipart/form-data" method="POST">
-      
+
         <div class="row g-3">
   
           <div class="col-12">
@@ -155,7 +160,7 @@
         if(x < max_fields){ //max input box allowed
 	
 		     //text box increment
-            $(wrapper).append('<div class="ingredeintDiv mb-1 row"><div class="col-md-2"><label for="quantityList">Mennyiség</label><div class="quantityList"><div class="quantityDiv mb-1"><input type="number" step="any" name="quantity" class="form-control" required></div></div></div><div class="col-md-8"><label for="ingredientList">Hozzávalók</label><input type="text" name="ingredients" class="form-control" required></div><a href="#" class="remove_field">Törlés</a></div>'); //add input box
+            $(wrapper).append('<div class="ingredeintDiv mb-1 row"><div class="col-md-2"><label for="quantityList">Mennyiség</label><div class="quantityList"><div class="quantityDiv mb-1"><input type="number" step="any" name="quantity" class="form-control" required></div></div></div><div class="col-md-8"><label for="ingredientList">Hozzávalók</label><input type="text" name="ingredients" class="form-control" required></div><a href="#" class="linkbtnsubmit remove_field btn btn-danger">Törlés</a></div>'); //add input box
             x++; 
 	  }
     });

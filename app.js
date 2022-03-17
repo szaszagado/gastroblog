@@ -230,9 +230,7 @@ app.get('/setup', async (req, res) => {
 
 
 
-app.get('/send-recipe', (req, res) => {
-  res.render('email-form');
-})
+
 
 
 app.post('/send', (req, res) => {
@@ -274,7 +272,7 @@ app.post('/send', (req, res) => {
   let mailOptions = {
     from: '<gastroblogbyszg@outlook.com>',
     to: 'gastroblogbyszg@outlook.com',
-    subject: 'Beküldött recept',
+    subject: 'Beküldött recept: ' + req.body.recipename,
     text: '',
     html: "<h3>Recept beküldő adatai</h3><ul><li>Beküldő neve: " + req.body.sendername + "</li><li>Beküldő email címe: " + req.body.senderemail + "</li></ul><h3>Recept megnevezese: </h3><ul><li>" + req.body.recipename + "</li></ul><h3>Kategória fogás szerint: </h3><ul><li>" + req.body.categoryByServing + "</li></ul><h3>Kategória nemzetiség szerint: </h3><ul><li>" + req.body.categoryByNationality + "</li></ul><h3>Elkészítés: </h3><ul><li>" + req.body.description + "</li></ul><h3>Adag (főre): </h3><ul><li>" + req.body.servings + "</li></ul><h3>Hozzávalók: </h3><ul><li>" + req.body.ingredients + "</li></ul>",
     attachments: [{
@@ -290,12 +288,16 @@ app.post('/send', (req, res) => {
       console.log('Email sent!');
     }
 
-    req.flash('Recipe has been added.')
+    req.flash('infoSubmit', 'A receptet sikeresen elküldted!')
     res.redirect('/send-recipe');
   });
 });
 
-
+app.get('/send-recipe', (req, res) => {
+  const infoErrorsObj = req.flash('infoErrors');
+  const infoSubmitObj = req.flash('infoSubmit');
+  res.render('email-form', { title: 'Gasztroblog - Recept beküldése', infoErrorsObj, infoSubmitObj  } );
+});
 
 
 

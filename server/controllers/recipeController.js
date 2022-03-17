@@ -288,7 +288,7 @@ exports.exploreNationalitiesById = async(req, res) => {
       //res.send(`<h2>Counter: `+visitors.count+'</h2>')
 
       // Logging the visitor count in the console
-      console.log("visitor on recipe called "+ recipe.name +" arrived: ",recipe.count)
+      console.log("visitor on recipe called "+ recipe.name +" changed: ",recipe.count)
   }
         db.collection('recipes').findOneAndUpdate({_id: ObjectId(recipeId)},
           [
@@ -316,14 +316,6 @@ exports.exploreNationalitiesById = async(req, res) => {
 
 
 
-
-
-
-
-
-
-
-
 /**
  * POST /search
  * Search
@@ -341,16 +333,6 @@ exports.searchRecipe = async(req, res) => {
 }
 
 Recipe.collection.dropIndexes();
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -473,11 +455,11 @@ exports.submitRecipeOnPost = async(req, res) => {
  * GET /send-recipe
  * Send Recipe
  */
- exports.sendRecipe = async(req, res) => {
-  const infoErrorsObj = req.flash('infoErrors');
-  const infoSubmitObj = req.flash('infoSubmit');
-  res.render('send-recipe', { title: 'Gasztroblog - Recept beküldése', infoErrorsObj, infoSubmitObj  } );
-  }
+//  exports.sendRecipe = async(req, res) => {
+//   const infoErrorsObj = req.flash('infoErrors');
+//   const infoSubmitObj = req.flash('infoSubmit');
+//   res.render('send-recipe', { title: 'Gasztroblog - Recept beküldése', infoErrorsObj, infoSubmitObj  } );
+//   }
 
    /**
  * POST /comment-recipe

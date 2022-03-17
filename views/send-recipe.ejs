@@ -5,21 +5,22 @@
   </div>
 </div>
 
-<% if(infoSubmitObj != '') { %>
-  <div class="col-8 alert alert-success" role="alert">
-    <%= infoSubmitObj %>
-  </div>
-<% } %>
-
-<% if(infoErrorsObj != '') { %>
-  <div class="col-8 alert alert-danger" role="alert">
-    <%= infoErrorsObj[0].message %>
-  </div>
-<% } %>
 
 <div class="row justify-content-center">
 
   <div class="col-8">
+
+    <% if(infoSubmitObj != '') { %>
+      <div class="col-12 alert alert-success" role="alert">
+        <%= infoSubmitObj %>
+      </div>
+    <% } %>
+    
+    <% if(infoErrorsObj != '') { %>
+      <div class="col-12 alert alert-danger" role="alert">
+        <%= infoErrorsObj[0].message %>
+      </div>
+    <% } %>
 
     <form action="/send-recipe" enctype="multipart/form-data" method="POST">
     

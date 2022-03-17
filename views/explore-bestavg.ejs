@@ -3,6 +3,14 @@
 
 <h1 class="pb-4">Legjobb értékelésű receptek</h1>
 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Kezdőlap</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Legjobb értékelés receptek</li>
+  </ol>
+</nav>
+
+
 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
     <% if(typeof recipe !== 'undefined' && recipe.length > 0) { %>
       <% recipe.forEach(function(recipe, index){ %>
@@ -11,6 +19,7 @@
           <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy">
         </div>
         <div class="pt-1"><%= recipe.name %></div>
+        <% if (recipe.ratingAvg !== null && recipe.ratingAvg !== 0){%>
         <table class="d-flex justify-content-center">
           <tbody>
              <tr class="a<%=recipe._id.valueOf()%>">
@@ -24,6 +33,9 @@
             </tr>
           </tbody>
         </table>
+        <% } else { %>
+          <p>Nincs értékelés</p>
+        <% } %>
       </a>
       <% }) %>
     <% } else { %>

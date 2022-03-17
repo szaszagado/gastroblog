@@ -16,7 +16,7 @@ router.get('/explore-random', recipeController.exploreRandom);
 router.get('/submit-recipe', recipeController.submitRecipe);
 router.post('/submit-recipe', recipeController.submitRecipeOnPost);
 router.post('/recipe/:id/comments', recipeController.CommentRecipeOnPost);
-router.get('/send-recipe', recipeController.sendRecipe);
+//router.get('/send-recipe', recipeController.sendRecipe);
 router.post('/recipe/:id/likes', recipeController.LikesRecipeOnPost);
 router.get('/nationalities/:id', recipeController.exploreNationalitiesById);
 router.get('/nationalities', recipeController.exploreNationalities);

@@ -87,7 +87,6 @@
                   <h5 class="thin">
                   <% recipe.quantity.forEach(function logingredients(quantity, index){
                     const ingredient = recipe.ingredients[index];
-                    console.log({ quantity: quantity, ingredient: ingredient });
                     b = [quantity].map(parseFloat)
                     bb = parseFloat(quantity.toString())
                     %>
@@ -211,6 +210,7 @@
                 <form action="/recipe/<%=recipe._id%>/comments" method="POST">
                 	<h3 class="pull-left">Új Hozzászólás</h3>
                     <fieldset>
+                      <div class="content-item">
                         <div class="row">
                           <div class="form-group">
                             <!-- <label for="rating">Értékelés</label>
@@ -225,8 +225,8 @@
                             <div class="containe mt-100">
                               <div class="row">
                                   <div class="col-md-3">
-                                      <div class="card">
-                                          <div class="card-body text-center">
+                                      
+                                          <div>
                                               <h5>Értékelés: <span class="myratings"></span></h5>
                                               <fieldset class="rating" >
                                                 <input type="radio" id="star5" name="rating" value="5" required/>
@@ -252,7 +252,7 @@
                                                 <input type="radio" class="reset-option" name="rating" value="reset" />
                                               </fieldset>
                                           </div>
-                                      </div>
+                                      
                                   </div>
                               </div>
                           </div>
@@ -269,6 +269,7 @@
                           </div>
                         </div>  
                         <button type="submit" class="btn btn-primary pull-left">Küldés</button>	
+                      </div>
                     </fieldset>
                     
                 </form>
@@ -280,15 +281,13 @@
 
                 <% if (recipe.comments) { %>
                   <% recipe.comments = recipe.comments.reverse(); %>
-                  <% recipe.comments.forEach(function (comment) { %> 
-                    <% console.log(comment.rating) %>                   
+                  <% recipe.comments.forEach(function (comment) { %>                   
                     <div class="media">
                         <div class="media-body">
                             <h4 class="media-heading"><%=comment.username%></h4>
                               <table>
                                 <tbody>
                                    <tr class="a<%=comment._id.valueOf()%>">
-                                     <% console.log('a' + comment._id.valueOf()) %>
                                      <td>
                                        <div class="get_stars-outer">
                                         <div class="get_stars-inner"></div>

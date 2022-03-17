@@ -2,7 +2,9 @@
     --bs-font-sans-serif: 'Rubik', sans-serfif;
 }
 
-.container-xxl  { max-width: 1350px; }
+.container-xxl  { 
+    max-width: 1350px; 
+}
 
 body {
     background-image: url("/img/pattern.jpg");
@@ -51,3 +53,4 @@ a { color: var(--bs-dark); }
     background-color: lightgray;
     border-radius: 3px;
 }
+

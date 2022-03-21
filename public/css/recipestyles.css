@@ -423,12 +423,12 @@
 
 .rating {
     border: none;
-    margin-right: 140px;
+    float: left;
 }
 
 .myratings {
     font-size: 22px;
-    color: green;
+    color: green
 }
 
 .rating>[id^="star"] {

@@ -121,7 +121,7 @@
         <h5 class="shareh5"><i class="fab fa-twitter"></i> Tweet</h5>
     </a>
     <a class="btn btn-sm btn-social btn-pin" href="http://pinterest.com/pin/create/link/?url=https://gastroblog.herokuapp.com/recipe/<%= recipe._id %>" target="_blank" title="Osszd meg Pinterestne">
-    <h5 class="shareh5"><i class="fab fa-pinterest" data-fa-transform="grow-4"></i></h5>
+      <h5 class="shareh5"><i class="fab fa-pinterest" data-fa-transform="grow-4"></i> Pin</h5>
     </a>
   </div>
   
@@ -212,55 +212,32 @@
                     <fieldset>
                       <div class="content-item">
                         <div class="row">
-                          <div class="form-group">
-                            <!-- <label for="rating">Értékelés</label>
-                            <select class="form-select form-control" name="rating" aria-label="Rating">
-                              <option selected>Értékelés</option>
-                              <option value="5">Nagyon jó!</option>
-                              <option value="4">Jó!</option>
-                              <option value="3">Elmegy!</option>
-                              <option value="2">Nem túl jó!</option>
-                              <option value="1">Rossz!</option>
-                            </select> -->
-                            <div class="containe mt-100">
-                              <div class="row">
-                                  <div class="col-md-3">
-                                      
-                                          <div>
-                                              <h5>Értékelés: <span class="myratings"></span></h5>
-                                              <fieldset class="rating" >
-                                                <input type="radio" id="star5" name="rating" value="5" required/>
-                                                  <label class="full" for="star5" title="5 csillag"></label>
-                                                <input type="radio" id="star4half" name="rating" value="4.5" />
-                                                  <label class="half" for="star4half" title="4.5 csillag"></label>
-                                                <input type="radio" id="star4" name="rating" value="4" />
-                                                  <label class="full" for="star4" title="4 csillag"></label>
-                                                <input type="radio" id="star3half" name="rating" value="3.5" />
-                                                  <label class="half" for="star3half" title="3.5 csillag"></label>
-                                                <input type="radio" id="star3" name="rating" value="3" />
-                                                  <label class="full" for="star3" title="3 csillag"></label>
-                                                <input type="radio" id="star2half" name="rating" value="2.5" />
-                                                  <label class="half" for="star2half" title="2.5 csillag"></label>
-                                                <input type="radio" id="star2" name="rating" value="2" />
-                                                  <label class="full" for="star2" title="2 csillag"></label>
-                                                <input type="radio" id="star1half" name="rating" value="1.5" />
-                                                  <label class="half" for="star1half" title="1.5 csillag"></label>
-                                                <input type="radio" id="star1" name="rating" value="1" />
-                                                  <label class="full" for="star1" title="1 csillag"></label>
-                                                <input type="radio" id="starhalf" name="rating" value="0.5" />
-                                                  <label class="half" for="starhalf" title="0.5 csillag"></label>
-                                                <input type="radio" class="reset-option" name="rating" value="reset" />
-                                              </fieldset>
-                                          </div>
-                                      
-                                  </div>
-                              </div>
-                          </div>
-
-
-
-
-                          </div>
+                          <div class="form-group container mt-100">                                               
+                            <h5>Értékelés: <span class="myratings"></span></h5>           
+                              <fieldset class="rating">
+                                <input type="radio" id="star5" name="rating" value="5" required/>
+                                  <label class="full" for="star5" title="5 csillag"></label>
+                                <input type="radio" id="star4half" name="rating" value="4.5" />
+                                  <label class="half" for="star4half" title="4.5 csillag"></label>
+                                <input type="radio" id="star4" name="rating" value="4" />
+                                  <label class="full" for="star4" title="4 csillag"></label>
+                                <input type="radio" id="star3half" name="rating" value="3.5" />
+                                  <label class="half" for="star3half" title="3.5 csillag"></label>
+                                <input type="radio" id="star3" name="rating" value="3" />
+                                  <label class="full" for="star3" title="3 csillag"></label>
+                                <input type="radio" id="star2half" name="rating" value="2.5" />
+                                  <label class="half" for="star2half" title="2.5 csillag"></label>
+                                <input type="radio" id="star2" name="rating" value="2" />
+                                  <label class="full" for="star2" title="2 csillag"></label>
+                                <input type="radio" id="star1half" name="rating" value="1.5" />
+                                  <label class="half" for="star1half" title="1.5 csillag"></label>
+                                <input type="radio" id="star1" name="rating" value="1" />
+                                  <label class="full" for="star1" title="1 csillag"></label>
+                                <input type="radio" id="starhalf" name="rating" value="0.5" />
+                                  <label class="half" for="starhalf" title="0.5 csillag"></label>
+                                <input type="radio" class="reset-option" name="rating" value="reset" />
+                              </fieldset>        
+                            </div>
                           <div class="form-group">
                             <input class="form-control" name="username" placeholder="Add meg a neved" required=""/>
                           </div>

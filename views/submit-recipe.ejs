@@ -54,7 +54,7 @@
                     <label for="quantityList">Mennyiség</label>
                     <div class="quantityList">
                       <div class="quantityDiv mb-1">
-                        <input type="number" step="any" name="quantity" class="form-control">
+                        <input type="number" step="any" name="quantity" class="form-control" required>
                       </div>
                     </div>
                   </div>
@@ -160,7 +160,7 @@
         if(x < max_fields){ //max input box allowed
 	
 		     //text box increment
-            $(wrapper).append('<div class="ingredeintDiv mb-1 row"><div class="col-md-2"><label for="quantityList">Mennyiség</label><div class="quantityList"><div class="quantityDiv mb-1"><input type="number" step="any" name="quantity" class="form-control"></div></div></div><div class="col-md-8"><label for="ingredientList">Hozzávalók</label><input type="text" name="ingredients" class="form-control" required></div><a href="#" class="linkbtnsubmit remove_field btn btn-danger">Törlés</a></div>'); //add input box
+            $(wrapper).append('<div class="ingredeintDiv mb-1 row"><div class="col-md-2"><label for="quantityList">Mennyiség</label><div class="quantityList"><div class="quantityDiv mb-1"><input type="number" step="any" name="quantity" class="form-control" required></div></div></div><div class="col-md-8"><label for="ingredientList">Hozzávalók</label><input type="text" name="ingredients" class="form-control" required></div><a href="#" class="col-md-8 linkbtnsubmit remove_field btn btn-danger">Törlés</a></div>'); //add input box
             x++; 
 	  }
     });
